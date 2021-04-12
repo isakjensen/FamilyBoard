@@ -23,6 +23,6 @@ let app = new Vue({
         this.interval = setInterval(() => {
             this.time = Intl.DateTimeFormat('en-SE', { timeStyle: 'long' }).format(new Date()).slice(0, -5);
             this.date = Intl.DateTimeFormat('en-SE', { dateStyle: 'full' }).format(new Date());
-        }, 1000)
+        }, 1000);
     }
 });
