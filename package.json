@@ -1,0 +1,24 @@
+{
+  "name": "FamilyBoard",
+  "version": "1.0.0",
+  "description": "A UI interface dashboard for families to display and preview data",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "tailwindcss build src/styles.css -o public/css/tailwind.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isakjensen/FamilyBoard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isakjensen/FamilyBoard/issues"
+  },
+  "homepage": "https://github.com/isakjensen/FamilyBoard#readme",
+  "dependencies": {
+    "autoprefixer": "^10.2.5",
+    "tailwindcss": "^2.1.1"
+  }
+}
