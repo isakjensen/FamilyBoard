@@ -19,15 +19,15 @@ let app = new Vue({
         let hours = new Date().getHours();
 
         if(hours >= 0 && hours < 7) {
-            this.color = 'bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-900'
+            this.color = 'from-indigo-600 to-purple-900'
         } else if(hours >= 7 && hours < 12) {
-            this.color = 'bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600'
+            this.color = 'from-yellow-400 to-yellow-600'
         } else if(hours >= 12 && hours < 19) {
-            this.color = 'bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-blue-500'
+            this.color = 'from-blue-300 to-blue-500'
         } else if(hours >= 19 && hours < 22) {
-            this.color = 'bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600'
+            this.color = 'from-blue-400 to-blue-600'
         } else if(hours >= 22) {
-            this.color = 'bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-purple-900'
+            this.color = 'from-pink-600 to-purple-900'
         }
 
         }, 1000);
