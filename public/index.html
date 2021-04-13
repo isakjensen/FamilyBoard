@@ -22,18 +22,28 @@
     <!-- Background -->
     <div class="bg-darkGray-900">
         <!-- Grid system -->
-        <div class="grid grid-cols-3 grid-rows-2 w-full min-h-screen" id="app">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <!-- Clock & date -->
-            <div class="flex items-end">
-                <div class="flex flex-col pb-28 gap-2">
-                    <div class="flex items-center justify-between">
-                        <div class="text-8xl font-mono text-darkGray-200">{{ time }}</div>
-                        <img v-show="state" class="ml-12 w-16" src="./img/day.svg">
-                    </div>
+        <div class="grid grid-cols-3 grid-rows-6 w-full min-h-screen text-center text-white shadow-sm text-2xl" id="app">
+            <div class="col-span-3">Stocks Slider</div>
+
+            <div class="row-span-6 p-10">
+                <div class="bg-boxGray w-full h-full rounded-2xl border-5 border-darkGray-800">Schedule</div>
+            </div>
+
+            <div class="row-span-3 p-10">
+                <div class="bg-boxGray w-full h-full rounded-2xl border-5 border-darkGray-800">Food</div>
+            </div>
+
+            <div class="row-span-2 p-10">
+                <div class="bg-boxGray w-full h-full rounded-2xl border-5 border-darkGray-800">Weather</div>
+            </div>
+
+            <div class="row-span-3 p-10">
+                <div class="bg-boxGray w-full h-full rounded-2xl border-5 border-darkGray-800">Notifications</div>
+            </div>
+
+            <div class="row-span-2 flex items-center">
+                <div class="flex flex-col w-full gap-3">
+                    <div v-bind="clock" class="text-8xl font-mono bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-red-400">{{ time }}</div>
                     <div class="text-4xl font-sans text-darkGray-500">{{ date }}</div>
                 </div>
             </div>
