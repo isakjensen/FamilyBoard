@@ -13,6 +13,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="./css/tailwind.css">
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.15.3/css/pro.min.css">
 
     <!-- Javascript -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
@@ -34,7 +35,19 @@
             </div>
 
             <div class="row-span-2 p-10">
-                <div class="bg-boxGray w-full h-full rounded-2xl border-5 border-darkGray-800">Weather</div>
+                <div class="bg-boxGray w-full h-full rounded-2xl border-5 border-darkGray-800">
+                    <div class="grid grid-cols-6 h-full">
+                        <div class="row-span-2 col-span-2 text-yellow-400 mt-auto mb-auto text-center">
+                            <i class="fad fa-sun fa-7x"></i>
+                        </div>
+                        <div class="row-span-2 col-span-4">
+                            <div class="flex flex-row gap-4 font-mono">
+                                <div class="text-8xl text-darkGray-300">12</div>
+                                <div class="text-4xl text-darkGray-400">°C</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="row-span-3 p-10">
@@ -44,7 +57,7 @@
             <div class="row-span-2 flex items-center">
                 <div class="flex flex-col w-full gap-3">
                     <div class="text-8xl font-mono bg-clip-text text-transparent bg-gradient-to-r" :class="color">{{ time }}</div>
-                    <div class="text-4xl font-sans text-darkGray-200">{{ date }}</div>
+                    <div class="text-4xl font-sans text-darkGray-300">{{ date }}</div>
                 </div>
             </div>
         </div>

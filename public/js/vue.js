@@ -14,9 +14,9 @@ let app = new Vue({
 
             if(h >= 0 && h < 7) {
                 return 'from-indigo-600 to-purple-900'
-            } else if(h >= 7 && h < 12) {
+            } else if(h >= 7 && h < 10) {
                 return 'from-yellow-400 to-yellow-600'
-            } else if(h >= 12 && h < 19) {
+            } else if(h >= 10 && h < 19) {
                 return 'from-blue-300 to-blue-500'
             } else if(h >= 19 && h < 22) {
                 return 'from-blue-400 to-blue-600'
