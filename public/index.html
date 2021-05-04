@@ -11,11 +11,13 @@
     <link rel="icon" type="image/svg+xml" href="./img/icon.svg">
 
     <!-- CSS -->
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="./css/tailwind.css">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.15.3/css/pro.min.css">
 
     <!-- Javascript -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script src="./js/vue.js" defer></script>
 </head>
@@ -27,43 +29,46 @@
             <div class="col-span-3">Stocks Slider</div>
 
             <div class="row-span-6 p-10">
-                <div class="bg-boxGray w-full h-full rounded-2xl border-5 border-darkGray-800">Schedule</div>
+                <div class="bg-boxGray w-full h-full rounded-2xl border-3 border-darkGray-800">Schedule</div>
             </div>
 
             <div class="row-span-3 p-10">
-                <div class="bg-boxGray w-full h-full rounded-2xl border-5 border-darkGray-800">Food</div>
+                <div class="bg-boxGray w-full h-full rounded-2xl border-3 border-darkGray-800">Food</div>
             </div>
 
             <div class="row-span-2 p-10">
-                <div class="bg-boxGray w-full h-full rounded-2xl border-5 border-darkGray-800 p-8">
+                <div class="bg-boxGray w-full h-full rounded-2xl border-3 border-darkGray-800 p-8 flex flex-col justify-between">
                     <div class="flex flex-row justify-between">
                         <div class="flex flex-col">
-                            <span class="text-8xl font-bold font-mono">20<span class="text-gray-500 pl-2">°</span></span>
-                            <span class="font-semibold mt-1 text-3xl text-gray-400">Lund, Sweden</span>
+                            <span class="text-8xl font-bold font-mono">{{ deg }}<span class="text-gray-500 pl-2">°</span></span>
+                            <span class="mt-1 text-3xl text-gray-400">{{ desc }}</span>
                         </div>
-                        <div class="text-yellow-400 mt-auto mb-auto">
-                            <i class="fad fa-sun fa-5x"></i>
+                        <div class="mt-auto mb-auto" :class="iconColor">
+                            <i class="fad fa-5x" :class="icon"></i>
                         </div>
                     </div>
-                    <div class="flex justify-between mt-12 px-10 text-gray-400">
-                        <div class="flex flex-col items-center">
-                            <span class="text-3xl font-mono">20<span class="text-gray-600 pl-1">°</span></span>
+                    <!-- <div class="mt-auto mb-auto"> -->
+                    <div class="mt-auto">
+                        <div class="flex justify-between px-6 text-gray-400">
+                            <div class="flex flex-row items-center">
+                                <i class="fad fa-eye fa-2x pr-4 text-green-400"></i>
+                                <span class="text-3xl font-mono">{{ view }}<span class="text-gray-500 pl-1">km</span></span>
+                            </div>
+                            <div class="flex flex-row items-center">
+                                <i class="fad fa-wind fa-2x pr-4 text-blue-400"></i>
+                                <span class="text-3xl font-mono">{{ wind }}<span class="text-gray-500 pl-1">m/s</span></span>
+                            </div>
+                            <div class="flex flex-row items-center">
+                                <i class="fad fa-sunset fa-2x pr-4 text-purple-400"></i>
+                                <span class="text-3xl font-mono">{{ sunset }}</span>
+                            </div>
                         </div>
-                        <div class="flex flex-col items-center">
-                            <span class="text-3xl font-mono">20<span class="text-gray-600 pl-1">°</span></span>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <span class="text-3xl font-mono">20<span class="text-gray-600 pl-1">°</span></span>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <span class="text-3xl font-mono">20<span class="text-gray-600 pl-1">°</span></span>
-                        </div>
-                      </div>
+                    </div>
                 </div>
             </div>
 
             <div class="row-span-3 p-10">
-                <div class="bg-boxGray w-full h-full rounded-2xl border-5 border-darkGray-800">Notifications</div>
+                <div class="bg-boxGray w-full h-full rounded-2xl border-3 border-darkGray-800">Notifications</div>
             </div>
 
             <div class="row-span-2 flex items-center text-center">

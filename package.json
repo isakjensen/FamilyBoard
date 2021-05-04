@@ -19,6 +19,10 @@
   "homepage": "https://github.com/isakjensen/FamilyBoard#readme",
   "dependencies": {
     "autoprefixer": "^10.2.5",
-    "tailwindcss": "^2.1.1"
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "request": "^2.88.2",
+    "tailwindcss": "^2.1.2"
   }
 }

@@ -18,7 +18,10 @@ module.exports = {
         '5': '5px',
         '6': '6px',
         '7': '7px'
-      } 
+      },
+      fontFamily: {
+        sans: ['Inter var'],
+      },
     },
   },
   variants: {

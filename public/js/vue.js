@@ -6,7 +6,14 @@ let app = new Vue({
     data: {
         time: null,
         date: null,
-        color: null
+        color: null,
+        deg: null,
+        desc: null,
+        view: null,
+        wind: null,
+        sunset: null,
+        icon: null,
+        iconColor: null,
     },
     methods: {
         GetClockColor: function() {
@@ -23,14 +30,46 @@ let app = new Vue({
             } else if(h >= 22) {
                 return 'from-pink-600 to-purple-900'
             }
+        },
+        AddZero: function(x) {
+            if(x < 10) {
+                return '0' + x;
+            } else {
+                return x;
+            }
+        },
+        UC: function(s) {
+            return s.charAt(0).toUpperCase() + s.slice(1);
         }
     },   
     created() {
+        let d, hours, minutes, seconds, day, date, month, year;
+
         this.interval = setInterval(() => {
-            this.time = Intl.DateTimeFormat('en-SE', { timeStyle: 'long' }).format(new Date()).slice(0, -5);
-            this.date = Intl.DateTimeFormat('en-SE', { dateStyle: 'full' }).format(new Date());
+
+            d = new Date();
+            hours = d.getHours();
+            minutes = d.getMinutes();
+            seconds = d.getSeconds();
+            day = days[d.getDay()];
+            date = d.getDate();
+            month = months[d.getMonth()];
+            year = d.getFullYear();
+
+            this.time = this.AddZero(hours) + ':' + this.AddZero(minutes) + ':' + this.AddZero(seconds);
+            this.date = `${day}, ${date} ${month} ${year}`;
 
             this.color = this.GetClockColor();
         }, 1000);
+
+        axios.get('http://127.0.0.1:3000/api/GetWeather').then(res => {
+            this.deg = ~~res.data.deg;
+            this.desc = this.UC(res.data.desc);
+            this.view = res.data.view;
+            this.wind = ~~res.data.wind;
+            this.sunset = res.data.sunset;
+            this.icon = res.data.icon;
+            this.iconColor = res.data.iconColor;
+        })
     }
 });
