@@ -9,16 +9,23 @@ app.use(cors());
 const port = 3000;
 
 const icons = {
-    01: { icon: 'fa-sun', color: 'text-yellow-400' },
-    02: { icon: 'fa-clouds-sun', color: 'text-yellow-200' },
-    03: { icon: 'fa-cloud', color: 'text-blue-400' },
-    04: { icon: 'fa-clouds', color: 'text-blue-200' },
-    09: { icon: 'fa-cloud-showers', color: 'text-gray-400' },
-    10: { icon: 'fa-cloud-drizzle', color: 'text-gray-400' },
-    11: { icon: 'fa-thunderstorm', color: 'text-yellow-600' },
-    13: { icon: 'fa-cloud-snow', color: 'text-white' },
-    50: { icon: 'fa-fog', color: 'text-gray-400' },
+    '01': { icon: 'fa-sun', color: 'text-yellow-400' },
+    '02': { icon: 'fa-clouds-sun', color: 'text-yellow-200' },
+    '03': { icon: 'fa-cloud', color: 'text-blue-400' },
+    '04': { icon: 'fa-clouds', color: 'text-blue-200' },
+    '09': { icon: 'fa-cloud-showers', color: 'text-gray-400' },
+    '10': { icon: 'fa-cloud-drizzle', color: 'text-gray-400' },
+    '11': { icon: 'fa-thunderstorm', color: 'text-yellow-600' },
+    '13': { icon: 'fa-cloud-snow', color: 'text-white' },
+    '50': { icon: 'fa-fog', color: 'text-gray-400' },
 }
+
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "familyboard"
+});
 
 app.get('/api/GetWeather/', async function (req, res) {
     res.header('Content-Type', 'application/json');
@@ -45,6 +52,14 @@ app.get('/api/GetWeather/', async function (req, res) {
         };
 
         res.send(JSON.stringify(obj, null, 4));
+    });
+});
+
+app.get('/api/GetNotifications/', async function (req, res) {
+    res.header("Content-Type", 'application/json');
+
+    con.query(`SELECT * FROM notifications ORDER BY date LIMIT 5`, function (err, result) {
+        res.send(JSON.stringify(result, null, 4));
     });
 });
 

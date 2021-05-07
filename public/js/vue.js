@@ -16,6 +16,45 @@ let app = new Vue({
         iconColor: null,
     },
     methods: {
+        RenderClock: function() {
+            let d, hours, minutes, seconds, day, date, month, year;
+
+            d = new Date();
+            hours = d.getHours();
+            minutes = d.getMinutes();
+            seconds = d.getSeconds();
+            day = days[d.getDay()];
+            date = d.getDate();
+            month = months[d.getMonth()];
+            year = d.getFullYear();
+
+            this.time = this.AddZero(hours) + ':' + this.AddZero(minutes) + ':' + this.AddZero(seconds);
+            this.date = `${day}, ${date} ${month} ${year}`;
+
+            this.color = this.GetClockColor();
+        },
+        RenderWeather: function() {
+            axios.get('http://127.0.0.1:3000/api/GetWeather').then(res => {
+                this.deg = ~~res.data.deg;
+                this.desc = this.UC(res.data.desc);
+                this.view = res.data.view;
+                this.wind = ~~res.data.wind;
+                this.sunset = res.data.sunset;
+                this.icon = res.data.icon;
+                this.iconColor = res.data.iconColor;
+            });
+        },
+        RenderNotifications: function() {
+            axios.get('http://127.0.0.1:3000/api/GetWeather').then(res => {
+                this.deg = ~~res.data.deg;
+                this.desc = this.UC(res.data.desc);
+                this.view = res.data.view;
+                this.wind = ~~res.data.wind;
+                this.sunset = res.data.sunset;
+                this.icon = res.data.icon;
+                this.iconColor = res.data.iconColor;
+            });
+        },
         GetClockColor: function() {
             let h = new Date().getHours();
 
@@ -43,33 +82,15 @@ let app = new Vue({
         }
     },   
     created() {
-        let d, hours, minutes, seconds, day, date, month, year;
+        this.RenderClock();
+        this.RenderWeather();
 
         this.interval = setInterval(() => {
-
-            d = new Date();
-            hours = d.getHours();
-            minutes = d.getMinutes();
-            seconds = d.getSeconds();
-            day = days[d.getDay()];
-            date = d.getDate();
-            month = months[d.getMonth()];
-            year = d.getFullYear();
-
-            this.time = this.AddZero(hours) + ':' + this.AddZero(minutes) + ':' + this.AddZero(seconds);
-            this.date = `${day}, ${date} ${month} ${year}`;
-
-            this.color = this.GetClockColor();
+            this.RenderClock();
         }, 1000);
 
-        axios.get('http://127.0.0.1:3000/api/GetWeather').then(res => {
-            this.deg = ~~res.data.deg;
-            this.desc = this.UC(res.data.desc);
-            this.view = res.data.view;
-            this.wind = ~~res.data.wind;
-            this.sunset = res.data.sunset;
-            this.icon = res.data.icon;
-            this.iconColor = res.data.iconColor;
-        })
+        this.interval = setInterval(() => {
+            this.RenderWeather();
+        }, 60000);
     }
 });
