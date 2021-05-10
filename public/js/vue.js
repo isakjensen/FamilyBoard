@@ -45,15 +45,25 @@ let app = new Vue({
             });
         },
         RenderNotifications: function() {
-            axios.get('http://127.0.0.1:3000/api/GetWeather').then(res => {
-                this.deg = ~~res.data.deg;
-                this.desc = this.UC(res.data.desc);
-                this.view = res.data.view;
-                this.wind = ~~res.data.wind;
-                this.sunset = res.data.sunset;
-                this.icon = res.data.icon;
-                this.iconColor = res.data.iconColor;
+            axios.get('http://127.0.0.1:3000/api/GetNotifications').then(res => {
+
+                let data = res.data;
+
+                for (let i = 0; i < data.length; i++)
+                {
+                    $('#notifications').append(`
+                        <div class="rounded-lg bg-darkGray-800 p-4 flex flex-col gap-2">
+                            <div class="flex flex-row justify-between">
+                                <div class="font-mono text-3xl text-darkGray-300">${data[i].author}</div>
+                                <div class="font-mono text-2xl text-darkGray-600">${data[i].date.replace('T', ' ').substring(0, data[i].date.replace('T', ' ').length - 5)}</div>
+                            </div>
+                            <div class="font-arial text-2xl text-darkGray-400">${data[i].message}</div>
+                        </div>
+                    `);
+                }
             });
+
+            
         },
         GetClockColor: function() {
             let h = new Date().getHours();
@@ -84,6 +94,7 @@ let app = new Vue({
     created() {
         this.RenderClock();
         this.RenderWeather();
+        this.RenderNotifications();
 
         this.interval = setInterval(() => {
             this.RenderClock();
@@ -91,6 +102,7 @@ let app = new Vue({
 
         this.interval = setInterval(() => {
             this.RenderWeather();
+            this.RenderNotifications();
         }, 60000);
     }
 });
